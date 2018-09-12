@@ -1,0 +1,36 @@
+/**
+ *	Version:	1.0.5
+ *	Package:	WebsiteBaker Module - Smooth Gallery
+ *
+ */
+
+form.smooth_edit input[type='text'] {
+	display: block;
+	float: left;
+	width: 300px;
+}
+
+form.smooth_edit select[name="options[x-putDescription]"],
+form.smooth_edit select[name="path"] {
+	width: 305px;
+}
+
+input[name="options[x-splitChar]"],
+input[name="height"],
+input[name="width"],
+input[name="options[fadeDuration]"],
+input[name="options[delay]"] {
+	width: 60px !important;
+	margin-right:10px;
+}
+
+select[name="options[x-useResizer]"],
+select[name="options[showArrows]"],
+select[name="options[showCarousel]"],
+select[name="options[showInfopane]"],
+select[name="options[embedLinks]"],
+select[name="options[timed]"]
+{
+	display: block;
+	width:65px !important;
+}

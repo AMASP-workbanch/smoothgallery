@@ -1,0 +1,23 @@
+.jdGallery a.right, .jdGallery a.left
+{
+	filter:alpha(opacity=20);
+	-moz-opacity:0.2;
+	-khtml-opacity: 0.2;
+}
+
+* html .jdGallery a.right, * html .jdGallery a.left
+{
+	filter:alpha(opacity=50);
+}
+
+.jdGallery a.right:hover, .jdGallery a.left:hover
+{
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+}
+
+* html .withArrows a.open:hover {
+	background: url('img/open.gif') no-repeat center center;
+	filter:alpha(opacity=80);
+}
