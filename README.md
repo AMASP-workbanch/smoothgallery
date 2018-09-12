@@ -4,7 +4,7 @@ This is a gallery module that uses AJAX gallery made by [JonDesign][1]
 for [WebsiteBaker][2]
 
 #### Requirements
-* [WebsiteBaker][2], Version >= 2.10.0 - 2.12.0 recommended
+* [WebsiteBaker][2], Version >= 2.10.0 (2.12.0 recommended)
 * PHP 7.1 (7.2 recommended)
 
 #### License
