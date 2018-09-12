@@ -112,7 +112,7 @@ if ( $admin->get_post('save') ) {
 	$query = "UPDATE `".TABLE_PREFIX."mod_smoothgallery` SET ";
 	foreach($fields as $key=>$value) $query .= "`".$key."`='".$value."',";
 	$query = substr($query,0, -1) ." WHERE `section_id`='".$section_id."'";
-
+	
 	$database->query($query);
 	
 	// Check if there is a database error, otherwise say successful
@@ -124,6 +124,4 @@ if ( $admin->get_post('save') ) {
 }
 
 // Print admin footer
-$admin->print_footer()
-
-?>
+$admin->print_footer();
