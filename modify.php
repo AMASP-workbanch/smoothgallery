@@ -82,19 +82,7 @@ if (!$fetch_page_content['height']) $fetch_page_content['height'] = '300';
 $hash_id = md5( time() );
 $_SESSION['hash_id'] = $hash_id;
 
-/**
- *	if this is second gallery module on this page
- *
- */
-if (!defined('SMOOTH_LOADED') && 0) { //disabled for the time beeing 
 ?>
-	<div style="border: 2px inset orange;">
-		<br />
-		&nbsp;<?php echo $SGTEXT['NOTE']; ?>:
-		<ul>
-		</ul>
-	</div>
-<?php } ?>
 
 <form class="smooth_edit" action="<?php echo WB_URL; ?>/modules/smoothgallery/save.php" method="post">
 
@@ -329,5 +317,8 @@ if (!defined('SMOOTH_LOADED') && 0) { //disabled for the time beeing
 <hr size="1" />
 <p>&nbsp;<br /></p>
 <?php
-	if (!defined("SMOOTH_LOADED")) define('SMOOTH_LOADED',true);
+	if (!defined("SMOOTH_LOADED"))
+	{
+	    define('SMOOTH_LOADED',true);
+	}
 ?>

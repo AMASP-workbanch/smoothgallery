@@ -31,5 +31,3 @@ if(!defined('WB_PATH')) die( header('Location: ../../index.php') );
  *
  */
 $database->query("DROP TABLE `".TABLE_PREFIX."mod_smoothgallery`");
-
-?>

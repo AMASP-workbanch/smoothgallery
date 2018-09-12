@@ -58,5 +58,3 @@ if (isset($_GET["imgfile"])) {
 
 	include(dirname(__FILE__).'/resizer.php');
 }
-
-?>

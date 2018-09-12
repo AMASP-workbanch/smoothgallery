@@ -204,4 +204,3 @@ if ( $query_content->numRows() > 0 ) {
 } else {
 	echo "Page content not found";
 }
-?>
