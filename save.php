@@ -119,7 +119,7 @@ if ( $admin->get_post('save') ) {
 	if($database->is_error()) {
 		$admin->print_error($database->get_error(), $js_back);
 	} else {
-		$admin->print_success($MESSAGE['PAGES']['SAVED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+		$admin->print_success($MESSAGE['PAGES_SAVED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	}
 }
 
