@@ -22,6 +22,9 @@
  *	
  *	Release History:
  *
+ *      1.0.8   2018-09-12  - Set project up to WB 2.12.0 with som minor fixes.
+ *                          - Tested with PHP 7.2.8
+ *
  *		1.0.7	2015-09-13	- Serval bugfixes and codechanges for WB 2.8.3 and deprecated functions.
  *
  *		1.0.6	2010-08-09	- Bugifx inside view.php - missing Quote causes in validation-errors.
