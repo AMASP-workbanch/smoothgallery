@@ -31,6 +31,25 @@ if(!defined('WB_PATH')) die( header('Location: ../../index.php') );
  *	this adds a new line in the database when you add your modul to a page
  *
  */
-$database->query("INSERT INTO `".TABLE_PREFIX."mod_smoothgallery` (`page_id`, `section_id`) VALUES ('".$page_id."','".$section_id."')");
+$fields = [
+    "page_id"   => $page_id,
+    "section_id"    => $section_id,
+    "galleryDesc"   => "",
+    "galleryTitle"  => "",
+    "path"          => "/".MEDIA_DIRECORY,
+    "options"       => "",
+    "width"         => "400",   // !
+    "height"        => "300"    // !
+    
+];
+$sQuery = "INSERT INTO `".TABLE_PREFIX."mod_smoothgallery` (`";
+$sQuery .= implode("`,`", array_keys($fields))."`) VALUES ('";
+$sQuery .= implode("','", array_values($fields))."')";
 
-?>
+
+$database->query( $sQuery );
+
+if($database->is_error())
+{
+    die($database->get_error());
+}
