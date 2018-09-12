@@ -15,7 +15,7 @@ GNU General Public License for this module.
 * ToS, Matthias Gallas, Dietrich Roland Pehlke (last)
 
 #### Notice
-This is currently private version for the 1.0.8 and this version will be definitely the last one for WebsiteBaker (WB-classic) of me at all.  
+This is currently private version for the 1.0.8 and this version will be definitely the last one for [WebsiteBaker][2] (WB-classic) of me at all.  
 Only necessary changes, no big steps!  
 If you want - feel free to take it over and fork.
 
