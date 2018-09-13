@@ -38,7 +38,15 @@ else
 }
 // end include class.secure.php
 
-if(!empty($div_name)) {
+$oSmoothgallery = smoothgallery::getInstance();
+
+if( false === $oSmoothgallery->bAlreadyInitialized )
+{
+	// echo("<br /><br />");
+}
+
+if(!empty($div_name)) 
+{
 	$gallery_count++;
 	echo("<br /><br />");
 } else {
@@ -49,7 +57,13 @@ if(!empty($div_name)) {
  *	get content from database
  *
  */
-$query_content = $database->query("SELECT * FROM `".TABLE_PREFIX."mod_smoothgallery` WHERE `section_id` = '".$section_id."'");
+$fetch_content = array();
+$database->execute_query(
+    "SELECT * FROM `".TABLE_PREFIX."mod_smoothgallery` WHERE `section_id` = '".$section_id."'",
+    true,
+    $fetch_content,
+    false
+);
 
 /**
  *	generate random name in case that there are two galleries in one page
@@ -57,10 +71,7 @@ $query_content = $database->query("SELECT * FROM `".TABLE_PREFIX."mod_smoothgall
  */
 $div_name = 'gallery_'.mt_rand(1,23876);
 
-if ( $query_content->numRows() > 0 ) {
-	$fetch_content = $query_content->fetchRow();
-	$LEPTON_PATH	= LEPTON_PATH;
-	$LEPTON_URL		= LEPTON_URL;
+if ( count($fetch_content) > 0 ) {
 	$path		= $fetch_content['path'];
 	$options	= unserialize($fetch_content['options']);
 	$w			= $fetch_content['width'];
@@ -69,22 +80,16 @@ if ( $query_content->numRows() > 0 ) {
 	$description = $fetch_content['galleryDesc'];
 	
 	// store for second gallery
-	if (!isset ($next_gallery)) $next_gallery = ""; $next_gallery .="start_".$div_name."();";
-
+	if (!isset ($next_gallery))
+	{
+	    $next_gallery = ""; $next_gallery .="start_".$div_name."();";
+    }
+    
 	/**
 	 *	give the output
 	 *
 	 */
-	// if (!$gallery_count) {
-// 	
-// 		$html  = "<script src=\"".LEPTON_URL."/modules/smoothgallery/scripts/mootools.js\" type=\"text/javascript\"></script>\n";
-// 		$html .= "<script src=\"".LEPTON_URL."/modules/smoothgallery/scripts/jd.gallery.js\" type=\"text/javascript\"></script>\n";
-// 		$html .= "<!--[if IE]>\n";
-// 		$html .= "<link rel=\"stylesheet\" href=\"".$LEPTON_URL."/modules/smoothgallery/frontend_ie.css\"></link>\n";
-// 		$html .= "<![endif]-->\n";
-// 	
-// 		echo $html;
-// 	}	
+
 	
 	$div_style = " style=\"width:".$w. "px !important; height:".$h."px !important; z-index:5; display: none; border: 1px solid #000; \"";
 
@@ -108,11 +113,14 @@ if ( $query_content->numRows() > 0 ) {
 	
 	echo $script;
 	
-	if (!$gallery_count) { ?>
+	if (false === $oSmoothgallery->bAlreadyInitialized) 
+	{ ?>
 		// moved to frontend.js	
 		window.onDomReady( rollGalleries );
 
-	<?php } ?>
+	<?php 
+	}
+	?>
 	funcList[<?php echo $gallery_count ?>]= 'start_<?php echo $div_name ?>()';
 	</script>
 	<?php
@@ -214,3 +222,5 @@ if ( $query_content->numRows() > 0 ) {
 } else {
 	echo "Page content not found";
 }
+
+$oSmoothgallery->bAlreadyInitialized = true;

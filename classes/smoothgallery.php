@@ -20,13 +20,15 @@
      */
     static $instance;
     
+    public $bAlreadyInitialized = false;
+    
     /**
      *  Called by instance. All we have to do during the initialisation of this class.
      * 
      */
     public function initialize()
     {
-    
+
     }
 
  }

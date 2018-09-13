@@ -12,7 +12,6 @@
  *
  */
 
-
 // include class.secure.php to protect this file and the whole CMS!
 if (defined('LEPTON_PATH'))
 {
@@ -38,10 +37,4 @@ else
     }
 }
 // end include class.secure.php
-
-/**
- *	Delete the entry in the module-table for 'this' section.
- *
- */
-$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_smoothgallery` WHERE `section_id`='".$section_id."' AND `page_id`='".$page_id."'");
 
