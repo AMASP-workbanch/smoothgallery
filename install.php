@@ -57,7 +57,7 @@ $table_fields="
 	`options`		TEXT NOT NULL,
 	`width`			VARCHAR(10) NOT NULL DEFAULT '400' ,
 	`height`		VARCHAR(10) NOT NULL DEFAULT '300' ,
-	PRIMARY KEY (section_id))
+	PRIMARY KEY (section_id)
 ";
 
 LEPTON_handle::install_table('mod_smoothgallery', $table_fields);

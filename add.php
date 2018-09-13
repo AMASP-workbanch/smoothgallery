@@ -54,7 +54,7 @@ $fields = [
     
 ];
 
-$database->execute_query(
+$database->build_and_execute(
     "insert",
     TABLE_PREFIX."mod_smoothgallery",
     $fields

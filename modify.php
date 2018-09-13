@@ -12,34 +12,59 @@
  *
  */
 
+// include class.secure.php to protect this file and the whole CMS!
+if (defined('LEPTON_PATH'))
+{
+    include(LEPTON_PATH . '/framework/class.secure.php');
+}
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while (($level < 10) && (!file_exists($root . '/framework/class.secure.php')))
+    {
+        $root .= $oneback;
+        $level += 1;
+    }
+    if (file_exists($root . '/framework/class.secure.php'))
+    {
+        include($root . '/framework/class.secure.php');
+    }
+    else
+    {
+        trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+    }
+}
+// end include class.secure.php
 
-/**
- *	prevent this file from being accessed directly
- */
-if(!defined('WB_PATH')) die( header('Location: ../../index.php') );
+$oSmoothgallery = smoothgallery::getInstance();
 
-require_once(WB_PATH.'/framework/functions.php');
-
-/**
- *	Load Language file
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+// Patch
+$SGTEXT = $oSmoothgallery->language;
 
 /**
  *	get infos from the Database
  *
  */
-$query_page_content = $database->query("SELECT * FROM `".TABLE_PREFIX."mod_smoothgallery` WHERE `section_id` = '".$section_id."'");
-$fetch_page_content = $query_page_content->fetchRow();
+$fetch_page_content = array();
+$database->execute_query(
+    "SELECT * FROM `".TABLE_PREFIX."mod_smoothgallery` WHERE `section_id` = '".$section_id."'",
+    true,
+    $fetch_page_content,
+    false
+);
 
 /**
  *	Set defaults
  *
  */
-if (($fetch_page_content['options']) && ( $fetch_page_content['options'] != '' ) ) {
+if (($fetch_page_content['options']) && ( $fetch_page_content['options'] != '' ) )
+{
 	$fetch_page_content['options'] = unserialize($fetch_page_content['options']);
-} elseif (empty($fetch_page_content['options']) || ($fetch_page_content['options']!=Array())) {
+} 
+elseif (empty($fetch_page_content['options']) || ($fetch_page_content['options']!=Array()))
+{
 	$fetch_page_content['options'] = array(
 		'x-putDescription'	=> 'top',
     	'x-loadExtensions'	=> 'jpg,gif,png',
@@ -54,8 +79,7 @@ if (($fetch_page_content['options']) && ( $fetch_page_content['options'] != '' )
     	'timed'	=> 'false',
     	'delay'	=> '9000',
     	'textShowCarousel' => "Pictures"
-	);
-	
+	);	
 }
 
 if (!isset($fetch_page_content['options']['x-loadExtensions']) || !$fetch_page_content['options']['x-loadExtensions']) 

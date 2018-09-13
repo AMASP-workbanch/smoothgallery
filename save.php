@@ -12,8 +12,31 @@
  *
  */
 
-
-require('../../config.php');
+// include class.secure.php to protect this file and the whole CMS!
+if (defined('LEPTON_PATH'))
+{
+    include(LEPTON_PATH . '/framework/class.secure.php');
+}
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while (($level < 10) && (!file_exists($root . '/framework/class.secure.php')))
+    {
+        $root .= $oneback;
+        $level += 1;
+    }
+    if (file_exists($root . '/framework/class.secure.php'))
+    {
+        include($root . '/framework/class.secure.php');
+    }
+    else
+    {
+        trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+    }
+}
+// end include class.secure.php
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
@@ -66,7 +89,6 @@ if ( $admin->get_post('save') ) {
 	);
 	
 	foreach($names as $item) $_POST[$item] = str_replace($fouls, "", $_POST[$item]);
-	foreach($names as $item) if ($item != "options") $_POST[$item] = $database->escapeString($_POST[$item]);
 	
 	/**
 	 *	Look for changes
@@ -79,10 +101,7 @@ if ( $admin->get_post('save') ) {
 	$options = $admin->get_post('options');
 	if (!$options['x-loadExtensions']) $options['x-loadExtensions'] = 'jpg,jpeg,gif,png'; // something must be shown
 	
-	foreach($options as &$ref) {
-		$ref = $database->escapeString($ref);
-	}
-	
+
 	$options = serialize($options);
 	
 	$galleryTitle=$admin->get_post('galleryTitle');
