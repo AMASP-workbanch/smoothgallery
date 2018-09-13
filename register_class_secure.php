@@ -17,7 +17,9 @@ $files_to_register = array(
 	'delete.php',
 	'functions.php',
 	'modify.php',
-	'save.php'	
+	'save.php',
+	'resizer_interface.php',
+	'resizer.php'
 );
 
 LEPTON_secure::getInstance()->accessFiles( $files_to_register );

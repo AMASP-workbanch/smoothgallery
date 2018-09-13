@@ -100,7 +100,7 @@ $_SESSION['hash_id'] = $hash_id;
 
 ?>
 
-<form class="smooth_edit" action="<?php echo WB_URL; ?>/modules/smoothgallery/save.php" method="post">
+<form class="smooth_edit" action="<?php echo LEPTON_URL; ?>/modules/smoothgallery/save.php" method="post">
 
 <input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
 <input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
@@ -145,13 +145,13 @@ $_SESSION['hash_id'] = $hash_id;
 		<td>
 			<select name="path">
 				<?php
-				$folder_list=directory_list(WB_PATH.MEDIA_DIRECTORY);
-				array_push($folder_list,WB_PATH.MEDIA_DIRECTORY);
+				$folder_list=directory_list(LEPTON_PATH.MEDIA_DIRECTORY);
+				array_push($folder_list,LEPTON_PATH.MEDIA_DIRECTORY);
 				natsort($folder_list);
 				foreach($folder_list AS $foldername) {
-					$option_str  = '<option value="'.str_replace(WB_PATH,'',$foldername).'"';
-					$option_str .=  ($fetch_page_content['path']==str_replace(WB_PATH,'',$foldername)) ? ' selected="selected"' : "" ;
-					$option_str .= '>'.str_replace(WB_PATH,'',$foldername)."</option>\n";
+					$option_str  = '<option value="'.str_replace(LEPTON_PATH,'',$foldername).'"';
+					$option_str .=  ($fetch_page_content['path']==str_replace(LEPTON_PATH,'',$foldername)) ? ' selected="selected"' : "" ;
+					$option_str .= '>'.str_replace(LEPTON_PATH,'',$foldername)."</option>\n";
 					
 					echo $option_str;
 				}

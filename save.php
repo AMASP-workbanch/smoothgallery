@@ -40,7 +40,7 @@ else
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 /**
  *	Looking for the hash_id
@@ -71,11 +71,11 @@ if ($admin->get_post('cmd_enable')) {
 if ($admin->get_post('cmd_disable')) {
 	$list = glob(dirname(__FILE__).'/cache/*');
 	if ($list) foreach ($list as $file_name) if (strrchr($file_name,'.')!='.') unlink($file_name);
-	if (!rmdir(dirname(__FILE__).'/cache')) {
-		$admin->print_error('Cache disable FAILED', $js_back);
-	} else {
+	//if (!rmdir(dirname(__FILE__).'/cache')) {
+	//	$admin->print_error('Cache disable FAILED', $js_back);
+	//} else {
 		$admin->print_success('Cache disabled', ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
-	}
+	//}
 }
 
 if ( $admin->get_post('save') ) {

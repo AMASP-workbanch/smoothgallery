@@ -1,32 +1,42 @@
 <?php
 
 /**
+ *  Smooth Gallery
  *
- *	Website Baker Project <http://www.websitebaker.org/>
- *	Copyright (C) 2004-2007, Ryan Djurovich
- *	
- *	Website Baker is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
- *	
- *	Website Baker is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *	
- *	You should have received a copy of the GNU General Public License
- *	along with Website Baker; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  Private L* 4.0 project
+ *
+ *  @package    LEPTON-CMS modules
+ *  @module     Smooth Gallery
+ *  @author     ToS, Matthias Gallas, Dietrich Roland Pehlke (last)
+ *  @license    GNU General Public License
  *
  */
 
-/**
- *	prevent this file from being accessed directly
- */
-if(!defined('WB_PATH')) die( header('Location: ../../index.php') );
-
-require_once(WB_PATH.'/framework/functions.php');
+// include class.secure.php to protect this file and the whole CMS!
+if (defined('LEPTON_PATH'))
+{
+    include(LEPTON_PATH . '/framework/class.secure.php');
+}
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while (($level < 10) && (!file_exists($root . '/framework/class.secure.php')))
+    {
+        $root .= $oneback;
+        $level += 1;
+    }
+    if (file_exists($root . '/framework/class.secure.php'))
+    {
+        include($root . '/framework/class.secure.php');
+    }
+    else
+    {
+        trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+    }
+}
+// end include class.secure.php
 
 if(!empty($div_name)) {
 	$gallery_count++;
@@ -49,8 +59,8 @@ $div_name = 'gallery_'.mt_rand(1,23876);
 
 if ( $query_content->numRows() > 0 ) {
 	$fetch_content = $query_content->fetchRow();
-	$WB_PATH	= WB_PATH;
-	$WB_URL		= WB_URL;
+	$LEPTON_PATH	= LEPTON_PATH;
+	$LEPTON_URL		= LEPTON_URL;
 	$path		= $fetch_content['path'];
 	$options	= unserialize($fetch_content['options']);
 	$w			= $fetch_content['width'];
@@ -65,16 +75,16 @@ if ( $query_content->numRows() > 0 ) {
 	 *	give the output
 	 *
 	 */
-	if (!$gallery_count) {
-	
-		$html  = "<script src=\"".WB_URL."/modules/smoothgallery/scripts/mootools.js\" type=\"text/javascript\"></script>\n";
-		$html .= "<script src=\"".WB_URL."/modules/smoothgallery/scripts/jd.gallery.js\" type=\"text/javascript\"></script>\n";
-		$html .= "<!--[if IE]>\n";
-		$html .= "<link rel=\"stylesheet\" href=\"".$WB_URL."/modules/smoothgallery/frontend_ie.css\"></link>\n";
-		$html .= "<![endif]-->\n";
-	
-		echo $html;
-	}	
+	// if (!$gallery_count) {
+// 	
+// 		$html  = "<script src=\"".LEPTON_URL."/modules/smoothgallery/scripts/mootools.js\" type=\"text/javascript\"></script>\n";
+// 		$html .= "<script src=\"".LEPTON_URL."/modules/smoothgallery/scripts/jd.gallery.js\" type=\"text/javascript\"></script>\n";
+// 		$html .= "<!--[if IE]>\n";
+// 		$html .= "<link rel=\"stylesheet\" href=\"".$LEPTON_URL."/modules/smoothgallery/frontend_ie.css\"></link>\n";
+// 		$html .= "<![endif]-->\n";
+// 	
+// 		echo $html;
+// 	}	
 	
 	$div_style = " style=\"width:".$w. "px !important; height:".$h."px !important; z-index:5; display: none; border: 1px solid #000; \"";
 
@@ -86,7 +96,7 @@ if ( $query_content->numRows() > 0 ) {
 	foreach ($options as $key => $val) if (strtolower(substr($key,0,2))!='x-') $script .= "\t\t\t".$key.": ".($key=='textShowCarousel' ? "'".$val."'" : $val).",\n";
 	
 	$script .= "\n";
-	$script .="\tthumbGenerator: '".$WB_URL."/modules/smoothgallery/resizer_interface.php'});\n";
+	$script .="\tthumbGenerator: '".LEPTON_URL."/modules/smoothgallery/resizer_interface.php'});\n";
 		
 	if ($options['x-windowedLinks']=='_blank') {
 		$script .= $div_name.".currentLink.onclick = function() {\n";
@@ -119,7 +129,7 @@ if ( $query_content->numRows() > 0 ) {
 	// scan for & add files
 	$arr = array();
 	$file_ext = explode(',',$options['x-loadExtensions']);
-	$file_list = file_list(WB_PATH.$path,array('*.php'));
+	$file_list = file_list(LEPTON_PATH.$path,array('*.php'));
 	foreach ($file_list as $file) {
 		if (is_integer(array_search(strtolower(substr(strrchr($file,'.'),1)), $file_ext)))
 			$arr[]=basename($file);
@@ -167,9 +177,9 @@ if ( $query_content->numRows() > 0 ) {
 								);
 							
 							if ($options['x-windowedLinks']=='jscript') {
-								$html .= "<a href=\"javascript: opnWin('". $WB_URL.$path.'/'.$file_name."', ";
+								$html .= "<a href=\"javascript: opnWin('". LEPTON_URL.$path.'/'.$file_name."', ";
 								
-								$size = getimagesize($WB_PATH.$path.'/'.$file);
+								$size = getimagesize(LEPTON_PATH.$path.'/'.$file);
 								
 								$html .= $size[0].','.$size[1];
 								
@@ -177,16 +187,16 @@ if ( $query_content->numRows() > 0 ) {
 							
 							} else {
 								
-								$html .= "<a href=\"". $WB_URL.$path.'/'. $file_name . "\" target=\"_top\" title=\"open image\" class=\"open\"></a>\n\n";
+								$html .= "<a href=\"". LEPTON_URL.$path.'/'. $file_name . "\" target=\"_top\" title=\"open image\" class=\"open\"></a>\n\n";
 							}
 
 							if ($options['x-useResizer']=='false') {
-									$html .= "<img src=\"" . $WB_URL.$path.'/'. $file_name ."\" class=\"full\" alt=\"\" />\n";
+									$html .= "<img src=\"" . LEPTON_URL.$path.'/'. $file_name ."\" class=\"full\" alt=\"\" />\n";
 							} else {
-									$html .= "<img src=\"".$WB_URL."/modules/smoothgallery/resizer_interface.php?imgfile=". $WB_URL.$path.'/'.$file_name."&amp;max_width=" . $w ." &amp;max_height=" . $h . "\" class=\"full\" alt=\"\" />\n";
+									$html .= "<img src=\"".LEPTON_URL."/modules/smoothgallery/resizer_interface.php?imgfile=". LEPTON_URL.$path.'/'.$file_name."&amp;max_width=" . $w ." &amp;max_height=" . $h . "\" class=\"full\" alt=\"\" />\n";
 							}
 							
-							$html .= "<img src=\"" . $WB_URL . "/modules/smoothgallery/resizer_interface.php?imgfile=" . $WB_URL.$path.'/'. $file_name. "&amp;max_width=100&amp;max_height=75\" class=\"thumbnail\" alt=\"\" />\n\n";
+							$html .= "<img src=\"" . LEPTON_URL . "/modules/smoothgallery/resizer_interface.php?imgfile=" . LEPTON_URL.$path.'/'. $file_name. "&amp;max_width=100&amp;max_height=75\" class=\"thumbnail\" alt=\"\" />\n\n";
 							$html .= "\n</div>\n";
 							
 							echo $html;
