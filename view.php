@@ -140,5 +140,5 @@ if ( count($settings) > 0 ) {
         ]
     );
 }
-
+$oSmoothgallery->iInternalCount++;
 $oSmoothgallery->bAlreadyInitialized = true;

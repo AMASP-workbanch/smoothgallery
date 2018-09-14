@@ -21,6 +21,7 @@
     static $instance;
     
     public $bAlreadyInitialized = false;
+    public $iInternalCount = 0;
     
     /**
      *  Called by instance. All we have to do during the initialisation of this class.

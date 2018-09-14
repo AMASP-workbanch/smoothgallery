@@ -63,7 +63,7 @@ function start_{{ gallery_name }}() {
 // moved to frontend.js
 window.onDomReady( rollGalleries );
 
-funcList[0]= 'start_{{ gallery_name }}()';
+funcList[{{ module.iInternalCount }}]= 'start_{{ gallery_name }}()';
 
 </script>
 
