@@ -2,8 +2,8 @@
 
 <h2>{{ settings.galleryTitle }}</h2>
 
-{% if ( (options.x-putDescription == 'top') and (settings.description != "") ) %}
-    <p>{{ settings.description }}</p>
+{% if ( (options['x-putDescription'] == 'top') and (settings.galleryDesc != "") ) %}
+    <p>{{ settings.galleryDesc }}</p>
 {% endif %}
 
 
@@ -40,8 +40,8 @@
     </tr>
 <table>
 
-{% if ( (options.x-putDescription == 'bottom') and (settings.description != "") ) %}
-    <p>{{ settings.description }}</p>
+{% if ( (options['x-putDescription'] == 'bottom') and (settings.galleryDesc != "") ) %}
+    <p>{{ settings.galleryDesc }}</p>
 {% endif %}
 
 <script type="text/javascript">
