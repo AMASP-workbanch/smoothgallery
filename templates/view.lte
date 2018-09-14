@@ -1,39 +1,39 @@
 {% autoescape false %}
 
-<h2>{{ settings.galleryTitle }}</h2>
+<h2 class="sg2_title">{{ settings.galleryTitle }}</h2>
 
 {% if ( (options['x-putDescription'] == 'top') and (settings.galleryDesc != "") ) %}
-    <p>{{ settings.galleryDesc }}</p>
+    <p class="sg2_desc">{{ settings.galleryDesc }}</p>
 {% endif %}
 
 
-<table width="98%" align="center" border="0">
+<table class="sg2_table">
     <tr>
-        <td width="100%" align="center">
+        <td class="sg2_td">
             
-            <div id="{{ gallery_name }}" style="width:{{ settings.width }}px !important; height:{{ settings.height }}px !important; z-index:5; display: none; border: 1px solid #000;" >
-    {% for image in allImages %}
+            <div class="sg2_gallery" id="{{ gallery_name }}" style="width:{{ settings.width }}px !important; height:{{ settings.height }}px !important; z-index:5; display: none; border: 1px solid #000;" >
+{% for image in allImages %}
                 <div class="imageElement">
                     <h3>{{ image.name }}</h3>
                     <p>{{ image.description }}</p>
               
-        {% if( options.x-windowedLinks =='jscript' ) %}      
-              <a href="javascript: opnWin('{{ image.file }}', {{ image.size[0] }}, {{ image.size[1] }} )" title="open image" class="open" ></a>
-        {% else %}
-              <a href="{{ image.file }}" target="_top" title="open image" class="open"></a>
-        {% endif %}
+{% if( options.x-windowedLinks =='jscript' ) %}      
+    <a href="javascript: opnWin('{{ image.file }}', {{ image.size[0] }}, {{ image.size[1] }} )" title="open image" class="open" ></a>
+{% else %}
+    <a href="{{ image.file }}" target="_top" title="open image" class="open"></a>
+{% endif %}
         
-        {% if( options.x-useResizer =='false' ) %}
-            <img src="{{ image.file }}" class="full" alt="{{ image.name }}" />
-        {% else %}
-            <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width={{ settings.width }}&max_height={{ settings.height }}" class="full" alt="{{ image.name }}" />
-        {% endif %}   
+{% if( options.x-useResizer =='false' ) %}
+    <img src="{{ image.file }}" class="full" alt="{{ image.name }}" />
+{% else %}
+    <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width={{ settings.width }}&max_height={{ settings.height }}" class="full" alt="{{ image.name }}" />
+{% endif %}   
             
-            <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width=100&max_height=75" class="thumbnail" alt="{{ image.name }}" />
+    <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width={{ smoothgallery.iThumbWidth }}&max_height={{ smoothgallery.iThumbHeight }}" class="thumbnail" alt="{{ image.name }}" />
             
               </div>
               
-    {% endfor %}    
+{% endfor %}    
             </div>
             
         </td>
@@ -41,7 +41,7 @@
 <table>
 
 {% if ( (options['x-putDescription'] == 'bottom') and (settings.galleryDesc != "") ) %}
-    <p>{{ settings.galleryDesc }}</p>
+    <p class="sg2_desc">{{ settings.galleryDesc }}</p>
 {% endif %}
 
 <script type="text/javascript">
@@ -63,7 +63,7 @@ function start_{{ gallery_name }}() {
 // moved to frontend.js
 window.onDomReady( rollGalleries );
 
-funcList[{{ module.iInternalCount }}]= 'start_{{ gallery_name }}()';
+funcList[{{ smoothgallery.iInternalCount }}]= 'start_{{ gallery_name }}()';
 
 </script>
 

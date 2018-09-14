@@ -132,7 +132,7 @@ if ( count($settings) > 0 ) {
     echo $oTWIG->render(
         "@smoothgallery/view.lte",
         [
-            'module'        => $oSmoothgallery,
+            'smoothgallery' => $oSmoothgallery,
             'settings'      => $settings, 
             'gallery_name'  => $div_name,
             'options'       => $options,

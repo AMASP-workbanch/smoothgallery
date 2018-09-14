@@ -226,4 +226,31 @@
 * html .withArrows a.open:hover {
 	background: url('../img/open.gif') no-repeat center center;
 }
-	
+
+/**
+ *  2.0
+ */
+table.sg2_table {
+    table-layout: fixed;
+    width: 98%;
+    text-align: center;
+    border: 0;
+}
+
+table.sg2_table {
+    width: 100%;
+}
+
+td.sg2_td {
+    width: 100%;
+    text-align: center;
+}
+
+div.sg2_gallery {
+    margin: 0 auto;
+}
+
+.sg2_title, .sg2_desc {
+    width: 100%;
+    text-align: center;
+}

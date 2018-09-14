@@ -23,6 +23,12 @@
     public $bAlreadyInitialized = false;
     public $iInternalCount = 0;
     
+    public $iDefaultWidth = 400;
+    public $iDefaultHeight = 300;
+    
+    public $iThumbWidth = 100;
+    public $iThumbHeight = 75;
+    
     /**
      *  Called by instance. All we have to do during the initialisation of this class.
      * 
