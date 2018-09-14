@@ -1,0 +1,70 @@
+{% autoescape false %}
+
+<h2>{{ settings.galleryTitle }}</h2>
+
+{% if ( (options.x-putDescription == 'top') and (settings.description != "") ) %}
+    <p>{{ settings.description }}</p>
+{% endif %}
+
+
+<table width="98%" align="center" border="0">
+    <tr>
+        <td width="100%" align="center">
+            
+            <div id="{{ gallery_name }}" style="width:{{ settings.width }}px !important; height:{{ settings.height }}px !important; z-index:5; display: none; border: 1px solid #000;" >
+    {% for image in allImages %}
+                <div class="imageElement">
+                    <h3>{{ image.name }}</h3>
+                    <p>{{ image.description }}</p>
+              
+        {% if( options.x-windowedLinks =='jscript' ) %}      
+              <a href="javascript: opnWin('{{ image.file }}', {{ image.size[0] }}, {{ image.size[1] }} )" title="open image" class="open" ></a>
+        {% else %}
+              <a href="{{ image.file }}" target="_top" title="open image" class="open"></a>
+        {% endif %}
+        
+        {% if( options.x-useResizer =='false' ) %}
+            <img src="{{ image.file }}" class="full" alt="{{ image.name }}" />
+        {% else %}
+            <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width={{ settings.width }}&max_height={{ settings.height }}" class="full" alt="{{ image.name }}" />
+        {% endif %}   
+            
+            <img src="{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php?imgfile={{ image.file }}&max_width=100&max_height=75" class="thumbnail" alt="{{ image.name }}" />
+            
+              </div>
+              
+    {% endfor %}    
+            </div>
+            
+        </td>
+    </tr>
+<table>
+
+{% if ( (options.x-putDescription == 'bottom') and (settings.description != "") ) %}
+    <p>{{ settings.description }}</p>
+{% endif %}
+
+<script type="text/javascript">
+function start_{{ gallery_name }}() {
+    var {{ gallery_name }}= new gallery($('{{ gallery_name }}'), {
+{% for option_name,option_value in options %}
+{% if( option_name|slice(0,2) != "x-" )%}
+{% if (option_name == "textShowCarousel")%}
+        {{ option_name }}: '{{ option_value }}',
+{% else %}
+        {{ option_name }}: {{ option_value }},
+{% endif %}
+{% endif %}
+{% endfor %}
+
+    thumbGenerator: '{{ LEPTON_URL }}/modules/smoothgallery/resizer_interface.php'
+    });
+}
+// moved to frontend.js
+window.onDomReady( rollGalleries );
+
+funcList[0]= 'start_{{ gallery_name }}()';
+
+</script>
+
+{% endautoescape %}

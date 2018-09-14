@@ -18,6 +18,6 @@
 }
 
 * html .withArrows a.open:hover {
-	background: url('img/open.gif') no-repeat center center;
+	background: url('../img/open.gif') no-repeat center center;
 	filter:alpha(opacity=80);
 }
