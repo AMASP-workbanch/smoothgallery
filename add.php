@@ -38,20 +38,21 @@ else
 }
 // end include class.secure.php
 
+$oSmoothgallery = smoothgallery::getInstance();
+
 /**
  *	Add new row in the table
  *
  */
 $fields = [
-    "page_id"   => $page_id,
+    "page_id"       => $page_id,
     "section_id"    => $section_id,
     "galleryDesc"   => "",
     "galleryTitle"  => "",
     "path"          => "/".MEDIA_DIRECTORY,
     "options"       => "",
-    "width"         => "400",   // !
-    "height"        => "300"    // !
-    
+    "width"         => $oSmoothgallery->iDefaultWidth,  // !
+    "height"        => $oSmoothgallery->iDefaultHeight  // !
 ];
 
 $database->build_and_execute(
@@ -60,7 +61,7 @@ $database->build_and_execute(
     $fields
 );
 
-if($database->is_error())
+if(true === $database->is_error())
 {
     die($database->get_error());
 }

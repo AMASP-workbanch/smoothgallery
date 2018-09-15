@@ -107,7 +107,7 @@ $_SESSION['hash_id'] = $hash_id;
 <input type="hidden" name="hash_id" value="<?php echo $hash_id;  ?>" />
 <table cellpadding="0" cellspacing="4" border="0" width="100%">
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['TITLE']; ?>:
 		</td>
 		<td>
@@ -115,7 +115,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['DESCRIPTION']; ?>:
 		</td>
 		<td>
@@ -123,23 +123,24 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['DESCRIPTION_LOCATION']; ?>:
 		</td>
 		<td>
 			<select name="options[x-putDescription]">
-				<option value="bottom" <?php if ($fetch_page_content['options']['x-putDescription']=='bottom') echo 'selected="selected"'; ?>><?php echo $SGTEXT['TRUE']; ?></option>
-				<option value="top" <?php if ($fetch_page_content['options']['x-putDescription']=='top') echo 'selected="selected"'; ?>><?php echo $SGTEXT['FALSE']; ?></option>
+			    <option value="none" <?php if ($fetch_page_content['options']['x-putDescription']=='none') echo 'selected="selected"'; ?>><?php echo $SGTEXT['display_description_none']; ?></option>
+				<option value="top" <?php if ($fetch_page_content['options']['x-putDescription']=='top') echo 'selected="selected"'; ?>><?php echo $SGTEXT['display_description_top']; ?></option>
+				<option value="bottom" <?php if ($fetch_page_content['options']['x-putDescription']=='bottom') echo 'selected="selected"'; ?>><?php echo $SGTEXT['display_description_bottom']; ?></option>
 			</select>
 		</td>
 	</tr>
 	<tr>
 		<td valign="middle" align="left" colspan="2">
-			<hr size="1" />
+			<p>&nbsp;</p>
 		</td>
 	</tr>
 	<tr>
-		<td class="setting_name" align="right">
+		<td class="setting_name sg2_left">
 			<?php echo $SGTEXT['DIRECTORY']; ?>:
 		</td>
 		<td>
@@ -160,7 +161,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['LOAD_EXTENSIONS']; ?>:
 		</td>
 		<td>
@@ -168,15 +169,15 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['SPLIT_CHAR']; ?>:
 		</td>
 		<td>
-			<input name="options[x-splitChar]" type="text" value="<?php echo $fetch_page_content['options']['x-splitChar']; ?>" maxlength="1" />&nbsp;<font color="#990000"><?php echo $SGTEXT['SPLIT_CHAR_BANNED'] ?>: \*/|":?~&gt;&lt;</font>
+			<input name="options[x-splitChar]" type="text" value="<?php echo $fetch_page_content['options']['x-splitChar']; ?>" maxlength="1" /><span class="sg2_infotext"><?php echo $SGTEXT['SPLIT_CHAR_BANNED'] ?>: \*/|":?~&gt;&lt;</span>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['HEIGHT']; ?>:
 		</td>
 		<td>
@@ -184,7 +185,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['WIDTH']; ?>:
 		</td>
 		<td>
@@ -192,7 +193,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['USE_RESIZER_BIG']; ?>:
 		</td>
 		<td>
@@ -203,7 +204,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['FADE_DURATION']; ?>:
 		</td>
 		<td>
@@ -211,7 +212,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['PREV_NEXT']; ?>:
 		</td>
 		<td>
@@ -222,7 +223,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['THUMBS']; ?>:
 		</td>
 		<td>
@@ -233,7 +234,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['TEXT_CARUSEL']; ?>:
 		</td>
 		<td>
@@ -241,7 +242,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['INFO_PANEL']; ?>:
 		</td>
 		<td>
@@ -252,7 +253,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['DIRECT_LINK']; ?>:
 		</td>
 		<td>
@@ -263,7 +264,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['DIRECT_LINK_OPEN_OPTION']; ?>:
 		</td>
 		<td>
@@ -275,7 +276,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['SLIDESHOW']; ?>:
 		</td>
 		<td>
@@ -286,7 +287,7 @@ $_SESSION['hash_id'] = $hash_id;
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['DELAY']; ?>:
 		</td>
 		<td>
@@ -295,16 +296,16 @@ $_SESSION['hash_id'] = $hash_id;
 	</tr>
 <?php if(!is_dir(dirname(__FILE__).'/cache')) { ?>
 	<tr>
-		<td valign="top" align="right">
+		<td class="sg2_left">
 			<?php echo $SGTEXT['CACHE_DIR']; ?>:
 		</td>
 		<td>
-			<input name="cmd_enable" type="submit" value="<?php echo $SGTEXT['CACHE_ENABLE']; ?>" style="width: 100px; margin-top: -2px;" />
+			<input name="cmd_enable" class="ui button orange" type="submit" value="<?php echo $SGTEXT['CACHE_ENABLE']; ?>" />
 		</td>
 	</tr>
 <?php } else { ?>
 	<tr>
-		<td align="right">
+		<td class="sg2_left">
 			<?php
 			$list = glob(dirname(__FILE__).'/cache/*'); 
 			$dir_size = 0;
@@ -312,26 +313,25 @@ $_SESSION['hash_id'] = $hash_id;
 			echo $SGTEXT['CACHE_DIR'].$SGTEXT['CACHE_SIZE'].':&nbsp;'.round( $dir_size/1024,2 ).'&nbsp;kB'; ?>
 		</td>
 		<td>
-			<input name="cmd_empty" type="submit" value="<?php echo $SGTEXT['CACHE_EMPTY']; ?>" style="width: 100px; margin-top: -2px;" />&nbsp;
-			<input name="cmd_disable" type="submit" value="<?php echo $SGTEXT['CACHE_DISABLE']; ?>" style="width: 100px; margin-top: -2px;" />
+			<input name="cmd_empty" class="ui button green" type="submit" value="<?php echo $SGTEXT['CACHE_EMPTY']; ?>" />&nbsp;
+			<input name="cmd_disable" class="ui button orange" type="submit" value="<?php echo $SGTEXT['CACHE_DISABLE']; ?>" />
 		</td>
 	</tr>
 <?php } ?>
 </table>
 
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<table class="sg2_button">
 	<tr>
-		<td align="left">
-			<input name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
+		<td align="center">
+			<input name="save" type="submit" class="ui button positive " value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
 		</td>
-		<td align="right">
-			<input type="button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/index.php'; return false;" style="width: 100px; margin-top: 5px;" />
+		<td align="center">
+			<input type="button" class="ui button negative" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/index.php'; return false;" style="width: 100px; margin-top: 5px;" />
 		</td>
 	</tr>
 </table>
+
 </form>
-<hr size="1" />
-<p>&nbsp;<br /></p>
 <?php
 	if (!defined("SMOOTH_LOADED"))
 	{

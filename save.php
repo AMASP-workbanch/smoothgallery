@@ -54,28 +54,33 @@ unset($_SESSION['hash_id']);
  *	Hash doesn't match ... we are called from no-where ...
  *	
  */
-if ($hash_id != $test_id) die ( header('Location: ../../index.php') );
+if ($hash_id != $test_id)
+{
+    die ( header('Location: ../../index.php') );
+}
 
-if ($admin->get_post('cmd_empty')) {
+if ($admin->get_post('cmd_empty'))
+{
 	$list = glob(dirname(__FILE__).'/cache/*');
 	if ($list) foreach ($list as $file_name) if (strrchr($file_name,'.')!='.') unlink($file_name);
 	$admin->print_success('Cache empty', ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }
-if ($admin->get_post('cmd_enable')) {
+
+if ($admin->get_post('cmd_enable'))
+{
 	if (!mkdir(dirname(__FILE__).'/cache')) {
 		$admin->print_error('Cache enable FAILED', $js_back);
 	} else {
+	    copy( __DIR__."/index.php", __DIR__."/cache/index.php");
 		$admin->print_success('Cache enabled', ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	}
 }
-if ($admin->get_post('cmd_disable')) {
-	$list = glob(dirname(__FILE__).'/cache/*');
-	if ($list) foreach ($list as $file_name) if (strrchr($file_name,'.')!='.') unlink($file_name);
-	//if (!rmdir(dirname(__FILE__).'/cache')) {
-	//	$admin->print_error('Cache disable FAILED', $js_back);
-	//} else {
-		$admin->print_success('Cache disabled', ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
-	//}
+
+if ($admin->get_post('cmd_disable'))
+{
+	LEPTON_handle::register("rm_full_dir");
+	rm_full_dir( __DIR__.'/cache' );
+	$admin->print_success('Cache disabled', ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }
 
 if ( $admin->get_post('save') ) {
@@ -88,7 +93,10 @@ if ( $admin->get_post('save') ) {
 		'galleryTitle', 'galleryDesc', 'options', 'path'
 	);
 	
-	foreach($names as $item) $_POST[$item] = str_replace($fouls, "", $_POST[$item]);
+	foreach($names as $item)
+	{
+	    $_POST[$item] = str_replace($fouls, "", $_POST[$item]);
+	}
 	
 	/**
 	 *	Look for changes
@@ -120,11 +128,12 @@ if ( $admin->get_post('save') ) {
 		'options'		=> $options
 	);
 	
-	$query = "UPDATE `".TABLE_PREFIX."mod_smoothgallery` SET ";
-	foreach($fields as $key=>$value) $query .= "`".$key."`='".$value."',";
-	$query = substr($query,0, -1) ." WHERE `section_id`='".$section_id."'";
-	
-	$database->query($query);
+	$database->build_and_execute(
+	    'update',
+	    TABLE_PREFIX."mod_smoothgallery",
+	    $fields,
+	    "`section_id`=".$section_id
+	);
 	
 	// Check if there is a database error, otherwise say successful
 	if($database->is_error()) {

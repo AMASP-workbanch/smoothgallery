@@ -43,6 +43,9 @@ $MOD_SMOOTHGALLERY = array(
 	'CACHE_ENABLE'=> 'aktivieren',
 	'CACHE_DIR'=> 'Zwischenspeicher',
 	'CACHE_SIZE'=> 'Größe',
-	'DESCRIPTION_LOCATION'=> 'unterhalb der Galerie',
-	'TEXT_CARUSEL'	=> 'Vorschaubilder Titel'
+	'DESCRIPTION_LOCATION'=> 'Beschreibung anzeigen',
+	'TEXT_CARUSEL'	=> 'Vorschaubilder Titel',
+    'display_description_top'   => "oben",
+	'display_description_bottom'   => "unten",
+	'display_description_none'   => "nicht"
 );

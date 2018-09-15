@@ -5,7 +5,7 @@
  *	Author:	 Dietrich Roland Pehlke (Aldus)
  *
  *	1.0.2	Modify the code to center the popup window in the middle of this window,
- *			instead of center it on the main-window (if two are availeble).
+ *			instead of center it on the main-window (if two are available).
  *			Also some bugfixing the "wrong" html-code.
  *
  *	1.0.1	Add some code to center the pop up window on the screen.
@@ -19,8 +19,7 @@ var previewWin = null;
 function opnWin (link, w,h) {
 	if (previewWin) previewWin.close();
 	/**
-	 *
-	 *
+	 *  set some vars
 	 */
 	var wo = window;
 	var w_left = wo.screenX;

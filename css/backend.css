@@ -4,6 +4,8 @@
  *
  */
 
+form.smooth_edit { margin-bottom: 24px; }
+form.smooth_edit tr { height: 32px; }
 form.smooth_edit input[type='text'] {
 	display: block;
 	float: left;
@@ -34,3 +36,9 @@ select[name="options[timed]"]
 	display: block;
 	width:65px !important;
 }
+
+td.sg2_left { text-align: right; padding-right:12px; }
+
+span.sg2_infotext { color:#880000; display: inherit; }
+
+table.sg2_button { width: 30%; margin: 10px auto; }

@@ -72,6 +72,7 @@ $database->execute_query(
 LEPTON_handle::register("random_string");
 $div_name = 'gallery_'.random_string(8);
 
+
 if ( count($settings) > 0 ) {
 	$path		= $settings['path'];
 	$options	= unserialize($settings['options']);
@@ -88,7 +89,7 @@ if ( count($settings) > 0 ) {
 	    LEPTON_PATH.$path,
 	    array(),
 	    false,
-	    "jpg|png|gif",
+	    str_replace(",", "|", $options['x-loadExtensions']), // "jpg|png|gif",
 	    LEPTON_PATH
 	);
 	
