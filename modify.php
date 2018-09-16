@@ -150,9 +150,10 @@ $_SESSION['hash_id'] = $hash_id;
 				array_push($folder_list,LEPTON_PATH.MEDIA_DIRECTORY);
 				natsort($folder_list);
 				foreach($folder_list AS $foldername) {
-					$option_str  = '<option value="'.str_replace(LEPTON_PATH,'',$foldername).'"';
-					$option_str .=  ($fetch_page_content['path']==str_replace(LEPTON_PATH,'',$foldername)) ? ' selected="selected"' : "" ;
-					$option_str .= '>'.str_replace(LEPTON_PATH,'',$foldername)."</option>\n";
+				    $sTempFoldername = str_replace(LEPTON_PATH,'',$foldername);
+					$option_str  = '<option value="'.$sTempFoldername.'"';
+					$option_str .=  ($fetch_page_content['path']==$sTempFoldername) ? ' selected="selected"' : "" ;
+					$option_str .= '>'.$sTempFoldername."</option>\n";
 					
 					echo $option_str;
 				}
